@@ -62,11 +62,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 progressBar.setVisibility(View.GONE);
                 if(task.isSuccessful())
                 {
-                   // Intent i=new Intent(MainActivity.this,profile.class);
-                  //  i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    Toast.makeText(getApplicationContext(),"Successful",Toast.LENGTH_SHORT).show();
                     finish();
-                    //startActivity(i);
+                    startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
                 }
                 else
                 {
@@ -85,6 +82,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.textView2).setOnClickListener(this);
         findViewById(R.id.button).setOnClickListener(this);
         mAuth=FirebaseAuth.getInstance();
+
+        if(mAuth.getCurrentUser()!=null)
+        {
+            finish();
+            startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
+        }
+
         emailText=(EditText)findViewById(R.id.editText);
         passText=(EditText)findViewById(R.id.editText2);
         progressBar=(ProgressBar)findViewById(R.id.progressBar3);
